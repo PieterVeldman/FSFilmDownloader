@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "PageFontStyle",
-  "description": "This extension changes the font style in a specific page.",
+  "name": "FamilySearch Film Downloader",
+  "description": "This extension downloads all the images in a FamilySearch Film.",
   "version": "1.0",
   "icons": {
     "128": "icon128.png",
@@ -24,6 +24,7 @@
   "content_scripts":[
     {
       "matches": ["https://www.familysearch.org/ark:/*"],
+      "matches": ["https://www.familysearch.org/search/film/*"],
       "js": ["content.js", "jquery-3.1.0.min.js"],
       "css": ["content.css"]
     }

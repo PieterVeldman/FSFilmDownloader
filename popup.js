@@ -10,11 +10,9 @@ function downloadImages(images_data, film_number) {
             //filename: 'image.png', saveAs: true},
             filename: filename},
             function(img_sequence,id) {
-                console.log("downloading "+img_sequence)
         });
 
     });
-    alert('Download Completo');
 }
 /**
  * Strip url to get the cat and imageOrFilmUrl params
@@ -29,7 +27,8 @@ function parseUrlParams(request_url){
 
     //let url_pattern = new RegExp("https://www.familysearch.org/(ark:/[0-9]*/.*)\?.*&cat=(\d*)");
     //const url_pattern = new RegExp("https://www.familysearch.org/(ark:/[0-9]*/.*)\\?+(?:.=.&)*cat=(\\d*)");
-    const url_pattern = new RegExp("https://www.familysearch.org/(ark:/[0-9]*/.*)\\?+(?:.=.&)*cat=([0-9]*)");
+    //const url_pattern = new RegExp("https://www.familysearch.org/(ark:/[0-9]*/.*)\\?+(?:.=.&)*cat=([0-9]*)");
+    const url_pattern = new RegExp("https://www.familysearch.org/(.*/.*/.*)\\?+(?:.=.&)*cat=([0-9]*)");
     const url_pattern_results = url_pattern.exec(request_url);
 
     const cat = url_pattern_results[2];
@@ -45,7 +44,10 @@ function parseUrlParams(request_url){
  * params= '{"type":"film-data","args":{"dgsNum":"008448065","state":{"i":"344","cat":"101779","imageOrFilmUrl":"/ark:/61903/3:1:3Q9M-C3MX-4T6S","catalogContext":"101779","viewMode":"i","selectedImageIndex":344},"locale":"pt","sessionId":"28ac18aa-04e1-47c7-b69a-d94c53c7e9d5-prod","loggedIn":true}}'
  */
 function assembleParams (url_params, film_number) {
-     return '{"type":"film-data","args":{"dgsNum":"'+film_number+'","state":{"cat":"'+url_params.cat+'","imageOrFilmUrl":"'+url_params.imageOrFilmUrl+'","catalogContext":"'+url_params.cat+'","viewMode":"i","selectedImageIndex":-1}}}' ;
+    film_number = $('span#film_number').text();
+    cat = $('input#cat').val();
+    imageOrFilmUrl = $('input#imageOrFilmUrl').val();
+     return '{"type":"film-data","args":{"dgsNum":"'+film_number+'","state":{"cat":"'+cat+'","imageOrFilmUrl":"'+imageOrFilmUrl+'","catalogContext":"'+cat+'","viewMode":"i","selectedImageIndex":-1}}}' ;
 }
 
 function getImagesUrl(JSONfile){
@@ -85,38 +87,37 @@ function requestJSON(url, params, film_number){
 $(function(){
 
 
-   $('#btnChange').click(function(){
-         chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
+    $('#btnChange').click(function(){
+            chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
             chrome.tabs.sendMessage(tabs[0].id, {todo: "downloadAllImages", url: tabs[0].url  } , function (film_number) {
-                request_url = tabs[0].url;
-                const url_params = parseUrlParams(request_url);
-                const params= assembleParams (url_params, film_number);
+                const params= assembleParams ();
                 const url = "https://www.familysearch.org/search/filmdatainfo";
-
-                //console.log('before requestJSON');
                 images_data = requestJSON(url, params, film_number);
-                //console.log('after requestJSON');
-                //console.log (images_data)
-
-
-
 
             });
         });
+    });
+
+
+    //load film_number and image_count
+    chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id, {todo: "getFilmData", url: tabs[0].url  } , function (film_data) {
+
+            $('span#film_number').text(film_data.film_number);
+            $('span#image_count').text(film_data.image_count);
+
+            request_url = tabs[0].url;
+            const url_params = parseUrlParams(request_url);
+            $('input#cat').val(url_params.cat);
+            $('input#imageOrFilmUrl').val(url_params.imageOrFilmUrl);
+
+        });
+    });
 
 
 
 
-        // chrome.downloads.download({url: 'https://edge.fscdn.org/assets/docs/fs_logo_favicon_sq.png',
-        // //filename: 'image.png', saveAs: true},
-        // filename: 'teste/image.png'},
-        // function(id) {
-        // // alert('Baixando imagem');
-        // });
 
 
-
-
-   });
 });
 
