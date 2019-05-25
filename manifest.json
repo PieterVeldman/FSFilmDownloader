@@ -5,13 +5,17 @@
   "description": "This extension downloads all the images in a FamilySearch Film.",
   "version": "1.0",
   "icons": {
-    "128": "icon128.png",
-    "48": "icon48.png",
-    "16": "icon16.png"
+    "128": "filmReelIcon128.png",
+    "48": "filmReelIcon48.png",
+    "16": "filmReelIcon16.png"
   },
 
   "page_action": {
-    "default_icon": "icon16.png",
+    "default_icon": {
+      "16": "filmReelIcon16.png",
+      "48": "filmReelIcon48.png",
+      "128": "filmReelIcon128.png"
+    },
     "default_popup": "popup.html",
     "default_title": "PageFontStyle"
   },
