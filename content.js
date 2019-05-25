@@ -20,7 +20,7 @@ function getImageCount (image_count_label) {
 
 chrome.runtime.sendMessage({todo: "showPageAction"});
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    if (request.todo == "downloadAllImages"){
+    if (request.todo == "getFilmNumber"){
 
         const film_number_div = $('.film-number').text();
         const film_number = getFilmNumber (film_number_div);
