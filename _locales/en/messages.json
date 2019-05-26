@@ -1,0 +1,30 @@
+{
+    "appName": {
+      "message": "FamilySearch Microfilm Downloader",
+      "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+      "message": "This tool downloads all the images in a FamilySearch Microfilm with a single button click. Once downloaded, you can browse your images Offline.",
+      "description":"The description of the application, displayed in the web store."
+    },
+    "allImgs": {
+      "message": "Download All Images",
+      "description":"The Download All Images button text"
+    },
+    "someImgs": {
+      "message": "Download Images from ",
+      "description":"The Download Some Images button text"
+    },
+    "hallImgs": {
+      "message": "Download All Images",
+      "description":"The Download All Images button text"
+    },
+    "hsomeImgs": {
+      "message": "Download range of images ",
+      "description":"The Download Some Images button text"
+    },
+    "to": {
+      "message": " to ",
+      "description":"The Download Some Images button text"
+    }
+  }

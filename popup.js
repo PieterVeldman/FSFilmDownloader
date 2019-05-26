@@ -37,16 +37,23 @@ function assembleParams (url_params, film_number) {
 
 
 $(function(){
+    $('.translate').each(function( index ) {
+        if (typeof (this.getAttribute('value'))==="string") { //text is set by attribute value and not inner text
+            $( this ).val( chrome.i18n.getMessage(this.id)) ;
+        }else{
+            $( this ).text( chrome.i18n.getMessage(this.id)) ;
+        }
 
+      });
 
-    $('#btnChange').click(function(){
+    $('#allImgs').click(function(){
             chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
             chrome.tabs.sendMessage(tabs[0].id, {todo: "getFilmNumber", url: tabs[0].url  } , function (film_number) {
                 const params= assembleParams ();
                 const url = "https://www.familysearch.org/search/filmdatainfo";
                 //download images on the background script
 
-                chrome.runtime.sendMessage({todo: "downloadImages", url: url, params : params, film_number : film_number  } , function (dataReturned) {
+                chrome.runtime.sendMessage({todo: "downloadAllImages", url: url, params : params, film_number : film_number  } , function (dataReturned) {
                    // console.log(dataReturned);
                 });
 
@@ -56,6 +63,26 @@ $(function(){
         });
     });
 
+    $('#someImgs').click(function(){
+        chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id, {todo: "getFilmNumber", url: tabs[0].url  } , function (film_number) {
+            const params= assembleParams ();
+            const url = "https://www.familysearch.org/search/filmdatainfo";
+            //download images on the background script
+            image_min = $('#fromImage').val();
+            image_max  =$('#toImage').val();
+            console.log(image_min);
+            console.log(image_max);
+
+            chrome.runtime.sendMessage({todo: "downloadImageRange", url: url, params : params, film_number : film_number, min : image_min , max: image_max  } , function (dataReturned) {
+               // console.log(dataReturned);
+            });
+
+
+
+            });
+        });
+    });
 
     //load film_number and image_count
     chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
@@ -63,6 +90,10 @@ $(function(){
 
             $('span#film_number').text(film_data.film_number);
             $('span#image_count').text(film_data.image_count);
+            $('#fromImage').val('1');
+            $("#fromImage").attr("max",film_data.image_count);
+            $('#toImage').val(film_data.image_count);
+            $('#toImage').attr("max",film_data.image_count);
 
             request_url = tabs[0].url;
             const url_params = parseUrlParams(request_url);

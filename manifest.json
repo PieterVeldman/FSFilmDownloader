@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "FamilySearch Film Downloader",
-  "description": "This extension downloads all the images in a FamilySearch Film.",
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
   "version": "1.0",
   "icons": {
     "128": "filmReelIcon128.png",
@@ -29,8 +30,8 @@
     {
       "matches": ["https://www.familysearch.org/ark:/*"],
       "matches": ["https://www.familysearch.org/search/film/*"],
-      "js": ["content.js", "jquery-3.1.0.min.js"],
-      "css": ["content.css"]
+      "js": ["content.js", "jquery-3.1.0.min.js","bootstrap.min.js"],
+      "css": ["style.css","bootstrap.min.css"]
     }
   ],
 

@@ -1,0 +1,30 @@
+{
+    "appName": {
+      "message": "Baixador de filmes do FamilySearch",
+      "description": "The title of the application, displayed in the web store."
+    },
+    "appDesc": {
+      "message": "Esta ferramenta baixa todas as imagens de um microfilme do FamilySearch com o simples clique de um botão. Após o download você poderá visualizar todas as suas imagens offline.",
+      "description":"The description of the application, displayed in the web store."
+    },
+    "allImgs": {
+      "message": "Baixar todas as imagens",
+      "description":"The Download All Images button text"
+    },
+    "someImgs": {
+      "message": "Baixar Imagens de ",
+      "description":"The Download Some Images button text"
+    },
+    "hallImgs": {
+      "message": "Baixar todas as imagens",
+      "description":"The Download All Images header"
+    },
+    "hsomeImgs": {
+      "message": "Baixar parte das imagens ",
+      "description":"The Download Some Images header"
+    },
+    "to": {
+      "message": " a ",
+      "description":"The Download Some Images button text"
+    }
+  }

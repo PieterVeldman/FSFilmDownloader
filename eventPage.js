@@ -8,14 +8,22 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.todo == "downloadImages") {
+    if (request.todo == "downloadAllImages") {
         images_data = requestJSON(request.url, request.params, request.film_number);
         //sendResponse("Alô mundo!");
     }
 });
 
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.todo == "downloadImageRange") {
+        console.log('oi')
+        console.log(request)
+        images_data = requestJSON(request.url, request.params, request.film_number, request.min,request.max );
 
-function getImagesUrl(JSONfile) {
+    }
+});
+
+function getImagesUrl(JSONfile, min = null, max = null) {
     let i = 0;
     const images_data = [];
     JSONfile.images.forEach(element => {
@@ -23,14 +31,20 @@ function getImagesUrl(JSONfile) {
         let patt = new RegExp("/familysearch.org/ark:/[0-9]*/(.*)/image.xml");
         let res = patt.exec(element);
         let img_id = res[1];
-        images_data.push({ 'img_id': img_id, 'img_sequence': i });
+        if(min !==null  && max !== null ) {
+            if (i >= min && i <= max) {
+                images_data.push({ 'img_id': img_id, 'img_sequence': i });
+            }
+        }else {
+            images_data.push({ 'img_id': img_id, 'img_sequence': i });
+        }
     });
     return images_data;
 
 }
 
 function downloadImages(images_data, film_number) {
-
+    console.log(images_data, film_number)
     images_data.forEach(image_data => {
         const img_sequence = image_data.img_sequence;
         const img_id = image_data.img_id;
@@ -47,7 +61,7 @@ function downloadImages(images_data, film_number) {
     });
 }
 
-function requestJSON(url, params, film_number) {
+function requestJSON(url, params, film_number, min = null, max = null) {
     var xhr = new XMLHttpRequest();
 
     xhr.open("POST", url, true);
@@ -58,7 +72,7 @@ function requestJSON(url, params, film_number) {
     const images_data = xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             JSONfile = JSON.parse(xhr.responseText);
-            const images_data = getImagesUrl(JSONfile);
+            const images_data = getImagesUrl(JSONfile, min, max);
             downloadImages(images_data, film_number);
         }
     }

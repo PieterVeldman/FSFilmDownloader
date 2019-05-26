@@ -6,21 +6,29 @@
         <script src="jquery-3.1.0.min.js"></script>
         <script src="popup.js"></script>
         <script src="jscolor.min.js"></script>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
   </head>
-  <style>
-    body {
-    min-width:250px;
-    min-height:150px;
-}
-  </style>
   <body>
-        <p>Número do filme: <span id="film_number"></span></p>
-        <p>Número de imagens: <span id="image_count"></span></p>
+        <h3 class="title"><span id="appName" class="translate"></span></h3>
+        <ul class="list-group">
+          <li class="list-group-item">Número do filme: <span id="film_number"></span></li>
+          <li class="list-group-item">Número de imagens: <span id="image_count"></span></li>
+        </ul>
 
-        <input type="submit" id="btnChange" value="Download All Images"/>
+
         <input type="hidden" id="cat" name="cat">
         <input type="hidden" id="imageOrFilmUrl" name="imageOrFilmUrl">
 
-
+        <h4 class="translate" id="hallImgs"></h4>
+        <input type="submit" id="allImgs" value="Download All" class="btn btn-info translate"/>
+      <hr />
+        <h4 class="translate" id="hsomeImgs"></h4>
+        <input type="submit" id="someImgs" value="Download Image " class="btn btn-info translate"/>
+        <input type="number" id="fromImage" name="fromImage" min="1" max="10">
+        <span id="to" class="translate"> </span>
+        <input type="number" id="toImage" name="toImage" min="2" max="10">
+      <hr />
+        <p id="appDesc" class="translate" ></span></p>
   </body>
 </html>
