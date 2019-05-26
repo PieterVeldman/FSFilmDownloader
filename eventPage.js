@@ -10,15 +10,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.todo == "downloadAllImages") {
         images_data = requestJSON(request.url, request.params, request.film_number);
-        //sendResponse("Alô mundo!");
+        sendResponse("OK");
     }
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.todo == "downloadImageRange") {
-        console.log('oi')
-        console.log(request)
         images_data = requestJSON(request.url, request.params, request.film_number, request.min,request.max );
+        sendResponse("OK");
 
     }
 });
@@ -44,7 +43,6 @@ function getImagesUrl(JSONfile, min = null, max = null) {
 }
 
 function downloadImages(images_data, film_number) {
-    console.log(images_data, film_number)
     images_data.forEach(image_data => {
         const img_sequence = image_data.img_sequence;
         const img_id = image_data.img_id;
@@ -55,7 +53,8 @@ function downloadImages(images_data, film_number) {
             //filename: 'image.png', saveAs: true},
             filename: filename
         },
-            function (img_sequence, id) {
+            function (downloadId) {
+              //  console.log(downloadId);
             });
 
     });

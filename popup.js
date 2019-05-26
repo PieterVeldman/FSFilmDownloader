@@ -47,41 +47,27 @@ $(function(){
       });
 
     $('#allImgs').click(function(){
-            chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
-            chrome.tabs.sendMessage(tabs[0].id, {todo: "getFilmNumber", url: tabs[0].url  } , function (film_number) {
-                const params= assembleParams ();
-                const url = "https://www.familysearch.org/search/filmdatainfo";
-                //download images on the background script
+        const film_number = $('span#film_number').text();
+        const params= assembleParams ();
+        const url = "https://www.familysearch.org/search/filmdatainfo";
+        //download images on the background script
 
-                chrome.runtime.sendMessage({todo: "downloadAllImages", url: url, params : params, film_number : film_number  } , function (dataReturned) {
-                   // console.log(dataReturned);
-                });
-
-
-
-            });
+        chrome.runtime.sendMessage({todo: "downloadAllImages", url: url, params : params, film_number : film_number  } , function (dataReturned) {
+            // console.log(dataReturned);
         });
     });
 
     $('#someImgs').click(function(){
-        chrome.tabs.query({active:true,currentWindow: true}, function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id, {todo: "getFilmNumber", url: tabs[0].url  } , function (film_number) {
-            const params= assembleParams ();
-            const url = "https://www.familysearch.org/search/filmdatainfo";
-            //download images on the background script
-            image_min = $('#fromImage').val();
-            image_max  =$('#toImage').val();
-            console.log(image_min);
-            console.log(image_max);
 
-            chrome.runtime.sendMessage({todo: "downloadImageRange", url: url, params : params, film_number : film_number, min : image_min , max: image_max  } , function (dataReturned) {
-               // console.log(dataReturned);
-            });
-
-
-
-            });
+        const film_number = $('span#film_number').text();
+        const params= assembleParams ();
+        const url = "https://www.familysearch.org/search/filmdatainfo";
+        const image_min = $('#fromImage').val();
+        const image_max  =$('#toImage').val();
+        chrome.runtime.sendMessage({todo: "downloadImageRange", url: url, params : params, film_number : film_number, min : image_min , max: image_max  } , function (dataReturned) {
+            // console.log(dataReturned);
         });
+
     });
 
     //load film_number and image_count
