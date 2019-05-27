@@ -28,8 +28,7 @@
 
   "content_scripts":[
     {
-      "matches": ["https://www.familysearch.org/ark:/*"],
-      "matches": ["https://www.familysearch.org/search/film/*"],
+      "matches": ["https://www.familysearch.org/ark:/*","https://www.familysearch.org/search/film/*"],
       "js": ["content.js", "jquery-3.1.0.min.js","bootstrap.min.js"],
       "css": ["style.css","bootstrap.min.css"]
     }
