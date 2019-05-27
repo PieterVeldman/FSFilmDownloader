@@ -1,3 +1,4 @@
+chrome.runtime.sendMessage({todo: "showPageAction"});
 
 /**
  * Strip dsgNum parameter from page content.
@@ -18,7 +19,6 @@ function getImageCount (image_count_label) {
 
 }
 
-chrome.runtime.sendMessage({todo: "showPageAction"});
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.todo == "getFilmNumber"){
 

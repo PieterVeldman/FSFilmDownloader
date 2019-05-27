@@ -4,8 +4,12 @@
       "description": "The title of the application, displayed in the web store."
     },
     "appDesc": {
-      "message": "This tool downloads all the images in a FamilySearch Microfilm with a single button click. Once downloaded, you can browse your images Offline.",
+      "message": "This tool downloads all the images in a FamilySearch Microfilm with a single button click.",
       "description":"The description of the application, displayed in the web store."
+    },
+    "imagesLocation": {
+      "message": "The images will be saved to a folder named after the Film Number under your Downloads folder",
+      "description":"Where the images will be saved."
     },
     "allImgs": {
       "message": "Download All Images",
@@ -26,5 +30,13 @@
     "to": {
       "message": " to ",
       "description":"The Download Some Images button text"
+    },
+    "film_number_label": {
+      "message": "Film Number",
+      "description":"The Film Number"
+    },
+    "image_count_label": {
+      "message": "Number of Images",
+      "description":"The Number of images contained in the Microfilm"
     }
   }

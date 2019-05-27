@@ -4,8 +4,12 @@
       "description": "The title of the application, displayed in the web store."
     },
     "appDesc": {
-      "message": "Esta ferramenta baixa todas as imagens de um microfilme do FamilySearch com o simples clique de um botão. Após o download você poderá visualizar todas as suas imagens offline.",
+      "message": "Esta ferramenta baixa todas as imagens de um microfilme do FamilySearch com o simples clique de um botão.",
       "description":"The description of the application, displayed in the web store."
+    },
+    "imagesLocation": {
+      "message": "As imagens serão salvas na pasta com o nome do número do filme na sua pasta de Downloads",
+      "description":"Where the images will be saved."
     },
     "allImgs": {
       "message": "Baixar todas as imagens",
@@ -26,5 +30,13 @@
     "to": {
       "message": " a ",
       "description":"The Download Some Images button text"
+    },
+    "film_number_label": {
+      "message": "Número do filme",
+      "description":"The Film Number"
+    },
+    "image_count_label": {
+      "message": "Número de imagens",
+      "description":"The Number of images contained in the Microfilm"
     }
   }
