@@ -28,16 +28,29 @@
 
   "content_scripts":[
     {
-      "matches": ["https://www.familysearch.org/ark:/*","https://www.familysearch.org/search/film/*"],
-      "js": ["content.js", "jquery-3.1.0.min.js","bootstrap.min.js"],
+      "matches": [
+                  "https://www.familysearch.org/ark:/*",
+                  "https://www.familysearch.org/search/*"
+                 ],
+      "exclude_globs": [
+                        "*catalog/results*",
+                        "*catalog/search*"
+                       ],
+      "js": [
+              "jquery-3.1.0.min.js",
+              "content.js",
+              "bootstrap.min.js"
+            ],
       "css": ["style.css","bootstrap.min.css"]
     }
   ],
-
+  "web_accessible_resources":["filmReelIcon16.png"],
   "permissions": [
     "tabs",
+    "storage",
     "https://www.familysearch.org/ark:/*",
     "https://www.familysearch.org/*",
-    "downloads"
+    "downloads",
+    "activeTab"
         ]
 }

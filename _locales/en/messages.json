@@ -38,5 +38,9 @@
     "image_count_label": {
       "message": "Number of Images",
       "description":"The Number of images contained in the Microfilm"
+    },
+    "stopDownloads": {
+      "message": "Stop All Downloads",
+      "description":"The Stop All Downloads button label"
     }
   }

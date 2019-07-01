@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="bootstrap.min.css">
         <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body class="popup">
         <h3 class="title"><span id="appName" class="translate"></span></h3>
         <ul class="list-group">
           <li class="list-group-item"><span id="film_number_label" class="translate"></span> : <span id="film_number"></span></li>
@@ -18,7 +18,7 @@
 
 
         <input type="hidden" id="cat" name="cat">
-        <input type="hidden" id="imageOrFilmUrl" name="imageOrFilmUrl">
+        <input type="hidden" id="image_or_film_url" name="image_or_film_url">
 
         <h4 class="translate" id="hallImgs"></h4>
         <input type="submit" id="allImgs" value="Download All" class="btn btn-info translate"/>
@@ -31,6 +31,7 @@
       <hr />
         <p id="appDesc" class="translate" ></span></p>
         <p id="imagesLocation" class="translate" ></span></p>
+        <input type="submit" id="stopDownloads" value="Stop All Downloads" class="btn btn-danger translate"/>
 
   </body>
 </html>
