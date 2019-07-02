@@ -42,5 +42,9 @@
     "stopDownloads": {
       "message": "Stop All Downloads",
       "description":"The Stop All Downloads button label"
+    },
+    "downloadCount": {
+      "message": "Images downloaded in the last 24 hours",
+      "description":"The number of images downloaded in the last 24 hours"
     }
   }

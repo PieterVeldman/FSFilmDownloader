@@ -1,4 +1,3 @@
-
 /**
  * Strip url to get the cat and imageOrFilmUrl params
  * i is not necessary
@@ -31,8 +30,22 @@ function parseUrlParams(request_url) {
 
 
 
+/**
+ * Keep number of records downloaded in the last 24 hours updated
+ */
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    if (!!changes.FSFilmLog){
+        FSFilmLog = changes.FSFilmLog.newValue;
+        const sum_of_records = countDownloadedRecords(FSFilmLog);
+        $('#downloadCountNumber').text(sum_of_records);
+    }
+});
+
 
 $(function () {
+
+
+
     /**
      * Fetch necessary parameters to download all images
      */
@@ -100,6 +113,7 @@ $(function () {
                         chrome.downloads.removeFile(item.id);
                     }
                 }
+                addLineToChromeStorage(-1, function () { })
             });
         });
 
@@ -154,6 +168,16 @@ $(function () {
     });
 
 
+    /**
+     * Keep number of records downloaded in the last 24 hours updated
+     */
+    return chrome.storage.local.get(  {FSFilmLog : []} , function (result) {
+        FSFilmLog = result.FSFilmLog;
+        if (!!FSFilmLog){
+            const sum_of_records = countDownloadedRecords(FSFilmLog);
+            $('#downloadCountNumber').text(sum_of_records);
+        }
+    });
 
 
 

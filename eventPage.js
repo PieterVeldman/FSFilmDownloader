@@ -15,7 +15,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 
-
 /**
  * Assemble necessary parameters to mount request for filmdatainfo.json
  * example:
@@ -67,26 +66,18 @@ function downloadImages(images_data, film_number) {
         const img_id = image_data.img_id;
         const image_url = 'https://familysearch.org/das/v2/' + img_id + '/dist.jpg'
         const filename = 'FS_films/' + film_number + '/' + img_sequence + '.jpg';
-        let FSFilmCanDownload = true;
-        chrome.storage.local.get('FSFilmCanDownload', function (result) {
-            FSFilmCanDownload = result.FSFilmCanDownload;
-            console.log('event - FSFilmCanDownload', FSFilmCanDownload, 'img_sequence', img_sequence);
-            if (FSFilmCanDownload) {
-                chrome.downloads.download({
-                    url: image_url,
-                    //filename: 'image.png', saveAs: true},
-                    filename: filename
-                },
-                    function (downloadId) {
-                        if (downloadId === undefined) { //there was an error downloading the file
-                            console.log(chrome.runtime.lastError);
-                            chrome.storage.local.set({ 'FSFilmCanDownload': false }, function () { });
-                        }
-                    });
-            }
+        chrome.downloads.download({
+            url: image_url,
+            //filename: 'image.png', saveAs: true},
+            filename: filename
+        },
+            function (downloadId) {
+                if (downloadId === undefined) { //there was an error downloading the file
+                    console.log(chrome.runtime.lastError);
+                    chrome.storage.local.set({ 'FSFilmCanDownload': false }, function () { });
+                }
+            });
 
-
-        });
 
     });
 }
@@ -117,13 +108,27 @@ function requestJSON(params) {
         if (xhr.readyState == 4) {
             JSONfile = JSON.parse(xhr.responseText);
             const images_data = getImagesUrl(JSONfile, params.image_min, params.image_max);
-            downloadImages(images_data, params.film_number);
+            /**
+             * test wether the requested number of images will exceed the quota
+             */
+            const current_n_records = images_data.length;
+            addLineToChromeStorage(current_n_records, function (download) {
+                if (download){
+                    downloadImages(images_data, params.film_number);
+                }else{
+                    alert('Maximum download quota per day reached. Wait a little longer to download again!');
+                }
+            } );
+
+
+
         }
     }
 
     xhr.send(assembleParams(params.film_number, params.catalog_context, params.image_or_film_url));
     return images_data;
 }
+
 
 
 

@@ -22,7 +22,10 @@
   },
 
   "background": {
-    "scripts": ["eventPage.js"],
+    "scripts": [
+      "storage.helper.js",
+      "eventPage.js"
+    ],
     "persistent": false
   },
 
@@ -38,6 +41,7 @@
                        ],
       "js": [
               "jquery-3.1.0.min.js",
+              "storage.helper.js",
               "content.js",
               "bootstrap.min.js"
             ],

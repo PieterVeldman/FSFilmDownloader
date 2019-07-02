@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>PageFontStyle</title>
         <script src="jquery-3.1.0.min.js"></script>
+        <script src="storage.helper.js"></script>
         <script src="popup.js"></script>
         <script src="jscolor.min.js"></script>
         <link rel="stylesheet" href="bootstrap.min.css">
@@ -22,16 +23,23 @@
 
         <h4 class="translate" id="hallImgs"></h4>
         <input type="submit" id="allImgs" value="Download All" class="btn btn-info translate"/>
-      <hr />
+        <hr />
+
         <h4 class="translate" id="hsomeImgs"></h4>
         <input type="submit" id="someImgs" value="Download Image " class="btn btn-info translate"/>
         <input type="number" id="fromImage" name="fromImage" min="1" max="10">
         <span id="to" class="translate"> </span>
         <input type="number" id="toImage" name="toImage" min="2" max="10">
-      <hr />
+        <hr />
+
+        <input type="submit" id="stopDownloads" value="Stop All Downloads" class="btn btn-danger translate"/>
+        <hr />
+
+        <span class="translate" id="downloadCount"></span> : <span id="downloadCountNumber"></span>
+        <hr />
+
         <p id="appDesc" class="translate" ></span></p>
         <p id="imagesLocation" class="translate" ></span></p>
-        <input type="submit" id="stopDownloads" value="Stop All Downloads" class="btn btn-danger translate"/>
 
   </body>
 </html>
