@@ -30,9 +30,6 @@ function assembleParams(film_number, catalog_context, image_or_film_url) {
  * function
  */
 function getImagesUrl(JSONfile, min = null, max = null) {
-    console.log(min);
-    console.log(max);
-    console.log(JSONfile)
     let i = 0;
     const images_data = [];
     JSONfile.images.forEach(element => {
@@ -48,7 +45,6 @@ function getImagesUrl(JSONfile, min = null, max = null) {
             images_data.push({ 'img_id': img_id, 'img_sequence': i });
         }
     });
-    console.log(images_data);
     return images_data;
 
 }
@@ -81,7 +77,38 @@ function downloadImages(images_data, film_number) {
 
     });
 }
+/**
+ * return the index of the requested catalog in the catalog array
+ * @param {*} JSONfile
+ */
+function fetchCatalogIdInJSON(JSONfile, catalog) {
+    const len = JSONfile.catalogs.length;
+    let i = 0;
+    while (i<len && JSONfile.catalogs[i].data.titleno[0] !==catalog ){
+        i++;
+    }
+    return i;
 
+}
+/**
+ * Sweeps the filmdatainfo.json file to find out if this microfilm is available
+ * online. If not, it won't be downloaded
+ * @param {*} JSONfile  filmdatainfo.json
+ * @param {*} catalog   catalog number
+ */
+function isAvailableOnline(JSONfile, catalog) {
+    const i = fetchCatalogIdInJSON(JSONfile, catalog);
+    if (i>=JSONfile.catalogs.length){ // catalog data not found in filmdata.json
+        alert("Couldn't fetch catalog data from JSON");
+        return false;
+    }else{
+        if (JSONfile.catalogs[i].data.available_online[0] === "Y"){
+            return true;
+        }
+    }
+    return false;
+
+}
 /**
  *  Fetches filmdatainfo.json data
  *
@@ -95,7 +122,6 @@ function downloadImages(images_data, film_number) {
  */
 
 function requestJSON(params) {
-    console.log(params)
     const filmdatainfo_url = "https://www.familysearch.org/search/filmdatainfo";
 
     let xhr = new XMLHttpRequest();
@@ -107,19 +133,22 @@ function requestJSON(params) {
     const images_data = xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             JSONfile = JSON.parse(xhr.responseText);
-            const images_data = getImagesUrl(JSONfile, params.image_min, params.image_max);
-            /**
-             * test wether the requested number of images will exceed the quota
-             */
-            const current_n_records = images_data.length;
-            addLineToChromeStorage(current_n_records, function (download) {
-                if (download){
-                    downloadImages(images_data, params.film_number);
-                }else{
-                    alert('Maximum download quota per day reached. Wait a little longer to download again!');
-                }
-            } );
-
+            if (isAvailableOnline(JSONfile, params.catalog_context)){
+                const images_data = getImagesUrl(JSONfile, params.image_min, params.image_max);
+                /**
+                 * test wether the requested number of images will exceed the quota
+                 */
+                const current_n_records = images_data.length;
+                addLineToChromeStorage(current_n_records, function (download) {
+                    if (download){
+                        downloadImages(images_data, params.film_number);
+                    }else{
+                        alert('Maximum download quota per day reached. Wait a little longer to download again!');
+                    }
+                } );
+            }else{
+                alert('The download of these images is restricted');
+            }
 
 
         }
