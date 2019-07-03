@@ -4,7 +4,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "1.0",
+  "version": "2.0",
   "icons": {
     "128": "filmReelIcon128.png",
     "48": "filmReelIcon48.png",
