@@ -38,5 +38,13 @@
     "image_count_label": {
       "message": "Número de imagens",
       "description":"The Number of images contained in the Microfilm"
+    },
+    "stopDownloads": {
+      "message": "Parar todos os Downloads",
+      "description":"The Stop All Downloads button label"
+    },
+    "downloadCount": {
+      "message": "Imagens baixadas nas últimas 24 horas",
+      "description":"The number of images downloaded in the last 24 hours"
     }
   }

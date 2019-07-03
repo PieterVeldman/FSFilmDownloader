@@ -4,7 +4,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "1.0",
+  "version": "2.0",
   "icons": {
     "128": "filmReelIcon128.png",
     "48": "filmReelIcon48.png",
@@ -22,22 +22,39 @@
   },
 
   "background": {
-    "scripts": ["eventPage.js"],
+    "scripts": [
+      "storage.helper.js",
+      "eventPage.js"
+    ],
     "persistent": false
   },
 
   "content_scripts":[
     {
-      "matches": ["https://www.familysearch.org/ark:/*","https://www.familysearch.org/search/film/*"],
-      "js": ["content.js", "jquery-3.1.0.min.js","bootstrap.min.js"],
+      "matches": [
+                  "https://www.familysearch.org/ark:/*",
+                  "https://www.familysearch.org/search/*"
+                 ],
+      "exclude_globs": [
+                        "*catalog/results*",
+                        "*catalog/search*"
+                       ],
+      "js": [
+              "jquery-3.1.0.min.js",
+              "storage.helper.js",
+              "content.js",
+              "bootstrap.min.js"
+            ],
       "css": ["style.css","bootstrap.min.css"]
     }
   ],
-
+  "web_accessible_resources":["filmReelIcon16.png"],
   "permissions": [
     "tabs",
+    "storage",
     "https://www.familysearch.org/ark:/*",
     "https://www.familysearch.org/*",
-    "downloads"
+    "downloads",
+    "activeTab"
         ]
 }

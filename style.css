@@ -1,7 +1,7 @@
-body{
+body.popup{
     background: transparent url("filmReelIcon48.png") no-repeat right top;
     padding: 15px;
-    min-width:300px;
+    min-width:500px;
     min-height:150px;
 
 }
