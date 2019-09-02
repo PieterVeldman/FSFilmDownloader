@@ -178,14 +178,7 @@ $(function () {
 
             });
         } else {
-            // console.log('addDownloadLinkstoContent from popup');
-            // chrome.tabs.sendMessage(tabs[0].id, {todo: "addDownloadLinkstoContent"} , function (film_numbers) {
-
-
-
-            // });
-
-
+            $('div#film_data').hide();
         }
     });
 
