@@ -4,7 +4,7 @@
  * exceed maximum download quota
  */
 function addLineToChromeStorage(current_n_records, callback ) {
-    const MAXIMUM_PERMITTED_DOWNLOADS_PER_DAY = 5000;
+    const MAXIMUM_PERMITTED_DOWNLOADS_PER_DAY = 100000;
     return chrome.storage.local.get({FSFilmLog : []}, function (result) {
         FSFilmLog = result.FSFilmLog;
         FSFilmLog = deleteOldRecords(FSFilmLog);

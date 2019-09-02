@@ -196,6 +196,7 @@ $(function () {
     return chrome.storage.local.get(  {FSFilmLog : []} , function (result) {
         FSFilmLog = result.FSFilmLog;
         if (!!FSFilmLog){
+            FSFilmLog = deleteOldRecords(FSFilmLog);
             const sum_of_records = countDownloadedRecords(FSFilmLog);
             $('#downloadCountNumber').text(sum_of_records);
         }
