@@ -16,7 +16,7 @@
       "description":"The Download All Images button text"
     },
     "someImgs": {
-      "message": "Baixar Imagens de ",
+      "message": "Baixar intervalo de imagens de ",
       "description":"The Download Some Images button text"
     },
     "hallImgs": {
@@ -45,6 +45,26 @@
     },
     "downloadCount": {
       "message": "Imagens baixadas nas últimas 24 horas",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "didYouLikeIt": {
+      "message": "Você gostou da extensão?",
+      "description":"Did you like the extension?"
+    },
+    "reviewIt": {
+      "message": "Por favor, a avalie:",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "questions": {
+      "message": "Você tem dúvidas ou sugestões?",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "contact": {
+      "message": "Contate o desenvolvedor",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "hideInfo": {
+      "message": "Oculte/Mostre esta informação",
       "description":"The number of images downloaded in the last 24 hours"
     }
   }

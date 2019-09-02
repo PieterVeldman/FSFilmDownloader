@@ -42,8 +42,23 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 
-$(function () {
 
+$(function () {
+    function showHide(state) {
+        if (!!state){
+            $('ul.list-group.below>li:nth-child(1)').hide();
+            $('ul.list-group.below>li:nth-child(2)').hide();
+            $('ul.list-group.below>li:nth-child(3)').hide();
+        }else{
+            $('ul.list-group.below>li:nth-child(1)').show();
+            $('ul.list-group.below>li:nth-child(2)').show();
+            $('ul.list-group.below>li:nth-child(3)').show();
+
+        }
+    }
+    getShowHideStatus(function (state) {
+        showHide(state);
+    })
 
 
     /**
@@ -97,6 +112,13 @@ $(function () {
 
     });
 
+
+    $('#hideInfo').parent().click( async function () {
+
+        toggleShowHide(function (state) {
+            showHide(state);
+        })
+    });
 
     /**
      * We'll only block downloads from our extension. Since OnCreated event

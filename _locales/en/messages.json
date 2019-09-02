@@ -16,7 +16,7 @@
       "description":"The Download All Images button text"
     },
     "someImgs": {
-      "message": "Download Images from ",
+      "message": "Download image range from ",
       "description":"The Download Some Images button text"
     },
     "hallImgs": {
@@ -45,6 +45,26 @@
     },
     "downloadCount": {
       "message": "Images downloaded in the last 24 hours",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "didYouLikeIt": {
+      "message": "Did you like the extension?",
+      "description":"Did you like the extension?"
+    },
+    "reviewIt": {
+      "message": "Please review it:",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "questions": {
+      "message": "Do you have any question or suggestions?",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "contact": {
+      "message": "Contact the developer",
+      "description":"The number of images downloaded in the last 24 hours"
+    },
+    "hideInfo": {
+      "message": "Hide/Show this information",
       "description":"The number of images downloaded in the last 24 hours"
     }
   }

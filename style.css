@@ -1,7 +1,53 @@
 body.popup{
     background: transparent url("filmReelIcon48.png") no-repeat right top;
-    padding: 15px;
-    min-width:500px;
-    min-height:150px;
+    padding: 0px 15px;
+    min-width:400px;
+    min-height:500px;
 
+}
+h3>span {
+    font-weight: bold;
+
+}
+h4 {
+    display: inline;
+}
+hr{
+    margin: 5px 0px;
+}
+.btn{
+    font-weight: bold;
+    width: 100%;
+}
+.btn-success{
+    margin-bottom: 10px;
+}
+.list-group-item {
+ text-align: center;
+ background-color: khaki;
+ padding: 5px 10px;
+}
+
+
+/* .below>.list-group-item  {
+    text-align: justify;
+} */
+
+
+.list-group, .btn-danger{
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3px;
+    display: block;
+    width: 400px;
+}
+.btn-danger{
+
+    margin-top: 5px;
+
+}
+
+.below{
+    width: 700px;
 }

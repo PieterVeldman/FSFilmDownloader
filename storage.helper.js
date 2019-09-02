@@ -67,3 +67,24 @@ function printChromeStorage() {
     });
 
 }
+
+/**
+ * toggle showHide status
+ */
+function toggleShowHide(callback ) {
+    return chrome.storage.local.get(['showHide'], function (result) {
+        showHide = !result.showHide;
+        return chrome.storage.local.set({showHide: showHide}, function () {
+            callback(showHide);
+        });
+    });
+}
+/**
+ * get showHide status
+ */
+function getShowHideStatus(callback ) {
+    return chrome.storage.local.get(['showHide'], function (result) {
+        showHide = result.showHide;
+        return callback(showHide);
+    });
+}

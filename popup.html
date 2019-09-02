@@ -1,45 +1,99 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>PageFontStyle</title>
-        <script src="jquery-3.1.0.min.js"></script>
-        <script src="storage.helper.js"></script>
-        <script src="popup.js"></script>
-        <script src="jscolor.min.js"></script>
-        <link rel="stylesheet" href="bootstrap.min.css">
-        <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PageFontStyle</title>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script src="storage.helper.js"></script>
+    <script src="popup.js"></script>
+    <script src="jscolor.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="popup">
-        <h3 class="title"><span id="appName" class="translate"></span></h3>
-        <ul class="list-group">
-          <li class="list-group-item"><span id="film_number_label" class="translate"></span> : <span id="film_number"></span></li>
-          <li class="list-group-item"><span id="image_count_label" class="translate"></span> : <span id="image_count"></span></li>
-        </ul>
+    <input type="hidden" id="cat" name="cat" />
+    <input type="hidden" id="image_or_film_url" name="image_or_film_url" />
+    <h3 class="title"><span id="appName" class="translate"></span></h3>
+    <span id="appDesc" class="translate"></span>
+    <hr />
 
+    <div id="film_data">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span id="film_number_label" class="translate"></span> :
+          <span id="film_number"></span>
+        </li>
+        <li class="list-group-item">
+          <span id="image_count_label" class="translate"></span> :
+          <span id="image_count"></span>
+        </li>
 
-        <input type="hidden" id="cat" name="cat">
-        <input type="hidden" id="image_or_film_url" name="image_or_film_url">
+        <!-- <h4 class="translate" id="hallImgs"></h4> -->
+        <li class="list-group-item">
+          <input
+            type="submit"
+            id="allImgs"
+            value="Download All"
+            class="btn btn-info translate"
+          />
+        </li>
 
-        <h4 class="translate" id="hallImgs"></h4>
-        <input type="submit" id="allImgs" value="Download All" class="btn btn-info translate"/>
-        <hr />
+        <!-- <h4 class="translate" id="hsomeImgs"></h4> -->
+        <li class="list-group-item">
+          <input
+            type="submit"
+            id="someImgs"
+            value="Download Image "
+            class="btn btn-success translate"
+          />
+          <input
+            type="number"
+            id="fromImage"
+            name="fromImage"
+            min="1"
+            max="10"
+          />
+          <span id="to" class="translate"> </span>
+          <input type="number" id="toImage" name="toImage" min="2" max="10" />
+        </li>
+      </ul>
+    </div>
+    <input
+      type="submit"
+      id="stopDownloads"
+      value="Stop All Downloads"
+      class="btn btn-danger translate"
+    />
+    <hr />
+    <ul class="list-group below">
+      <!-- <li class="list-group-item"> <span id="appDesc" class="translate" ></span></li> -->
+      <li class="list-group-item">
+        <span id="imagesLocation" class="translate"></span>
+      </li>
+      <li class="list-group-item">
+        <span id="didYouLikeIt" class="translate"></span>
+        <a
+          href="https://chrome.google.com/webstore/detail/familysearch-microfilm-do/nicmhhajkocicpnikdmagplkinemjgec/reviews"
+          target="_blank"
+        >
+          <span id="reviewIt" class="translate"></span>
+        </a>
+      </li>
+      <li class="list-group-item">
+          <span id="questions" class="translate"></span>
 
-        <h4 class="translate" id="hsomeImgs"></h4>
-        <input type="submit" id="someImgs" value="Download Image " class="btn btn-info translate"/>
-        <input type="number" id="fromImage" name="fromImage" min="1" max="10">
-        <span id="to" class="translate"> </span>
-        <input type="number" id="toImage" name="toImage" min="2" max="10">
-        <hr />
+        <a
+          href="https://chrome.google.com/webstore/detail/familysearch-microfilm-do/nicmhhajkocicpnikdmagplkinemjgec/support"
+          target="_blank"
+        >
+          <span id="contact" class="translate"></span>
+        </a>
 
-        <input type="submit" id="stopDownloads" value="Stop All Downloads" class="btn btn-danger translate"/>
-        <hr />
+      <li class="list-group-item"><span id="hideInfo" class="translate"></span></li>
+    </ul>
+    <hr />
 
-        <span class="translate" id="downloadCount"></span> : <span id="downloadCountNumber"></span>
-        <hr />
-
-        <p id="appDesc" class="translate" ></span></p>
-        <p id="imagesLocation" class="translate" ></span></p>
-
+    <span class="translate" id="downloadCount"></span> :
+    <span id="downloadCountNumber"></span>
   </body>
 </html>
