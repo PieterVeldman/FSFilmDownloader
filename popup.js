@@ -94,7 +94,6 @@ $(function () {
     });
 
     $('#allImgs').click(function () {
-        chrome.downloads.onCreated.removeListener(blockDownloadsListener);
             const params = getMicrofilmParams();
             //download images on the background script
             chrome.runtime.sendMessage({ todo: "downloadImages", params: params }, function (dataReturned) {
@@ -103,7 +102,6 @@ $(function () {
     });
 
     $('#someImgs').click(function () {
-        chrome.downloads.onCreated.removeListener(blockDownloadsListener);
         const params = getMicrofilmParamsMinMaxImageNumbers();
         //download images on the background script
         chrome.runtime.sendMessage({ todo: "downloadImages", params: params }, function (dataReturned) {
@@ -121,33 +119,13 @@ $(function () {
     });
 
     /**
-     * We'll only block downloads from our extension. Since OnCreated event
-     * doesn't return byExtensionId, we must retieve it with
-     * chrome.downloads.search method.
-     * If the download has suceeded, delete the file.
-     */
-    function blockDownloadsListener(item) {
-        chrome.downloads.search({ id: item.id }, function (DownloadItems) {
-            DownloadItems.forEach(DownloadItem => {
-                if (DownloadItem.byExtensionId === chrome.runtime.id) {
-                    chrome.downloads.cancel(item.id);
-                    if (item.state == "complete") {
-                        chrome.downloads.removeFile(item.id);
-                    }
-                }
-                addLineToChromeStorage(-1, function () { })
-            });
-        });
-
-    }
-
-
-    /**
     * If the user wishes to stop all downloads, this option will do it
     */
 
     $('#stopDownloads').click(function () {
-        chrome.downloads.onCreated.addListener(blockDownloadsListener);
+
+        chrome.runtime.sendMessage({ todo: "stopDownloads" });
+
     });
 
     /**

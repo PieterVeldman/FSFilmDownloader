@@ -9,11 +9,44 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.todo == "downloadImages") {
+        chrome.downloads.onCreated.removeListener(blockDownloadsListener);
+
         images_data = requestJSON(request.params);
         sendResponse("OK");
     }
 });
 
+
+    /**
+    * Receives the message to stop all downloads
+    */
+
+chrome.runtime.onMessage.addListener(function (request) {
+    if (request.todo == "stopDownloads") {
+        chrome.downloads.onCreated.addListener(blockDownloadsListener);
+    }
+});
+
+    /**
+     * We'll only block downloads from our extension. Since OnCreated event
+     * doesn't return byExtensionId, we must retieve it with
+     * chrome.downloads.search method.
+     * If the download has suceeded, delete the file.
+     */
+    function blockDownloadsListener(item) {
+        chrome.downloads.search({ id: item.id }, function (DownloadItems) {
+            DownloadItems.forEach(DownloadItem => {
+                if (DownloadItem.byExtensionId === chrome.runtime.id) {
+                    chrome.downloads.cancel(item.id);
+                    if (item.state == "complete") {
+                        chrome.downloads.removeFile(item.id);
+                    }
+                }
+                addLineToChromeStorage(-1, function () { })
+            });
+        });
+
+    }
 
 /**
  * Assemble necessary parameters to mount request for filmdatainfo.json
