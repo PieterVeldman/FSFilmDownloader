@@ -20,7 +20,10 @@ function parseMicrofilmUrlParams(film_url){
 $(function(){
     const params_array =[];
     self = this;
-    $('a.film-format-image').each(function( index, self ) {
+    /**
+     * avoid that index searchs appear as a download option a.film-format-index  (index links )found in: https://www.familysearch.org/search/catalog/2656516?availability=Family%20History%20Library
+     */
+    $('a.film-format-image').not('a.film-format-index').each(function( index, self ) {
         //get href property and strip Microfilm parameters
         const film_url= $(this).attr("href");
         const film_link_id = 'film_link'+index;
