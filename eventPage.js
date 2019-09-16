@@ -138,6 +138,11 @@ function isAvailableOnline(JSONfile, catalog) {
         if (JSONfile.catalogs[i].data.available_online[0] === "Y"){
             return true;
         }
+        /**
+         * De alguma maneira, nem todos os registros disponíveis online estão marcados com Y,
+         * então temporariamente estou removendo a restrição
+         */
+        return true;
     }
     return false;
 

@@ -62,7 +62,6 @@ function getImageCount (image_count_label) {
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if (request.todo == "getFilmData"){
-        console.log ('getFilmData');
         if (location.href.indexOf("catalog")=== -1 ){
 
             const film_number_div = $('.film-number').text();
