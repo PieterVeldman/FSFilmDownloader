@@ -4,7 +4,7 @@
       "description": "The title of the application, displayed in the web store."
     },
     "appDesc": {
-      "message": "This tool downloads all the images in a FamilySearch Microfilm with a single button click.",
+      "message": "This tool downloads all the images in a FamilySearch microfilm with a single button click.",
       "description":"The description of the application, displayed in the web store."
     },
     "imagesLocation": {
@@ -66,5 +66,21 @@
     "hideInfo": {
       "message": "Hide/Show this information",
       "description":"The number of images downloaded in the last 24 hours"
+    },
+    "allImgsFromMicrofim": {
+      "message": "Download all images from this microFilm",
+      "description":"The Download All Images button text in catalog search"
+    },
+    "restrictedFilm": {
+      "message": "This microfilm has viewing limitations and shouldn't be dowloaded according to FamilySearch !",
+      "description":"The Restricted film text in both catalog search and popup view"
+    },
+    "popupTooSoon": {
+      "message": "Wait until the FamilySearch film page loads completely and click on the extension icon again!",
+      "description":"Show this message when the user requests the popup too soon"
+    },
+    "notFSendorsed": {
+      "message": "This tool is an independent endeavor and is not associated with or endorsed by FamilySearch.",
+      "description":"Show this message to explicitly say it's not endorsed by FS"
     }
   }

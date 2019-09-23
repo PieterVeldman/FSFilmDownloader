@@ -139,22 +139,41 @@ $(function () {
          * do not load film number data.
          */
         if (request_url.indexOf("catalog") === -1) {
+                chrome.tabs.sendMessage(tabs[0].id, { todo: "getFilmData" }, function (film_data) {
+                        if (typeof(film_data) == "undefined") {
 
-            chrome.tabs.sendMessage(tabs[0].id, { todo: "getFilmData" }, function (film_data) {
+                            $('#film_data > ul > li:nth-child(1)').text(    chrome.i18n.getMessage("popupTooSoon")   );
+                            $('#film_data > ul > li:nth-child(2)').hide();
+                            $('#film_data > ul > li:nth-child(3)').hide();
+                            $('#film_data > ul > li:nth-child(4)').hide();
 
-                $('span#film_number').text(film_data.film_number);
-                $('span#image_count').text(film_data.image_count);
-                $('#fromImage').val('1');
-                $("#fromImage").attr("max", film_data.image_count);
-                $('#toImage').val(film_data.image_count);
-                $('#toImage').attr("max", film_data.image_count);
+                        } else {
+                            console.log('film_data :', film_data);
+                            $('span#film_number').text(film_data.film_number);
+                            $('span#image_count').text(film_data.image_count);
+                            $('#fromImage').val('1');
+                            $("#fromImage").attr("max", film_data.image_count);
+                            $('#toImage').val(film_data.image_count);
+                            $('#toImage').attr("max", film_data.image_count);
 
-                const url_params = parseUrlParams(request_url);
-                $('input#cat').val(url_params.cat);
-                $('input#image_or_film_url').val(url_params.image_or_film_url);
+                            const url_params = parseUrlParams(request_url);
+                            $('input#cat').val(url_params.cat);
+                            $('input#image_or_film_url').val(url_params.image_or_film_url);
+
+                            if (film_data.is_restricted){
+
+                                $('#film_data > ul > li:nth-child(4)').hide();
+                                $('#film_data > ul > li:nth-child(3)').text(  chrome.i18n.getMessage("restrictedFilm")  );
+                            //  $('#film_data > ul > li:nth-child(2)').text("Hello world!");
+                            }
+
+                        }
 
 
-            });
+                    return true;
+
+                });
+
         } else {
             $('div#film_data').hide();
         }

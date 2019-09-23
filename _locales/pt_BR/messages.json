@@ -66,5 +66,21 @@
     "hideInfo": {
       "message": "Oculte/Mostre esta informação",
       "description":"The number of images downloaded in the last 24 hours"
+    },
+    "allImgsFromMicrofim": {
+      "message": "Baixar todas as imagens deste microfilme",
+      "description":"The Download All Images button text in catalog search"
+    },
+    "restrictedFilm": {
+      "message": "Este microfilme tem visualização limitada e não deve ser baixado de acordo com o FamilySearch!",
+      "description":"The Restricted film text in both catalog search and popup view"
+    },
+    "popupTooSoon": {
+      "message": "Espere a página do filme do FamilySearch carregar completamente e clique no ícone da extensão novamente!",
+      "description":"Show this message when the user requests the popup too soon"
+    },
+    "notFSendorsed": {
+      "message": "Essa ferramenta é fruto de desenvolvimento independente e não é associada ou endossada pelo FamilySearch.",
+      "description":"Show this message to explicitly say it's not endorsed by FS"
     }
   }
