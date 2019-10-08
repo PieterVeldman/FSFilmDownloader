@@ -4,7 +4,7 @@
   "name": "__MSG_appName__",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "icons": {
     "128": "filmReelIcon128.png",
     "48": "filmReelIcon48.png",
@@ -35,6 +35,10 @@
                   "https://www.familysearch.org/ark:/*",
                   "https://www.familysearch.org/search/film/*",
                   "https://www.familysearch.org/search/catalog/*"
+                 ],
+      "exclude_matches": [
+                  "https://www.familysearch.org/search/catalog/results*",
+                  "https://www.familysearch.org/search/catalog"
                  ],
       "exclude_globs": [
                   "*catalog/results*",
